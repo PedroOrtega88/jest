@@ -5,14 +5,11 @@ beforeEach(() => {
 });
 
 
-
-
-
 //errores creacion producto
 
 describe('addProduct', () => {
     it('should throw an error if the product already exists', () => {
-        addProduct('ProductoExistente');
+        addProduct('ProductoExistente', 5).toEqual([{name:'zanahoria', price: 5, id: 1}]);
       
         expect(() => addProduct('ProductoExistente')).toThrow('El producto ya existe');
     });
@@ -43,7 +40,6 @@ describe('getProduct', () => {
     });
           
 });
-
 
 
 //errores actualizar producto

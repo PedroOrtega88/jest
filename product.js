@@ -6,21 +6,8 @@ let id = 0;
 
 
 function resetProducts() {
-    products = [];
-    id = 0;
-}
-
-
-
-
-function addProduct(name, price) {
-    if (!name || !price) {
-        throw new Error('El nombre y el precio del producto son obligatorios');
-    }
-    
-    id++;
-    const product = { id, name, price };
-    products.push(product);
+   products = [];
+   id = 0;
 }
 
 
@@ -28,6 +15,22 @@ function getProducts() {
     return products;
 
 }
+
+function addProduct(name, price) {
+    if (!name || !price) {
+        throw new Error('El nombre y el precio del producto son obligatorios');
+    
+    } 
+    if (products.find(product => product.name === name)) {
+        throw new Error('Este prodicto ya existe')
+    }
+    
+    products.push({name, price, id: id++});
+    return products
+}
+
+
+
 
 function getProduct(id) {
     const product = products.find(product => product.id === id);
@@ -37,7 +40,7 @@ function getProduct(id) {
     return product;
 }
 
-
+/*
 function removeProduct(id) {
     const product = products.removeProduct (product => product.id === id);
     if (!product) {
@@ -46,7 +49,7 @@ function removeProduct(id) {
     products.splice;
 
 }
-/*
+
 function updateProduct {
     const product = products.removeProduct (product => product.id === id);
     if (!product) {
@@ -61,9 +64,9 @@ function updateProduct {
 module.exports = {
     resetProducts,
     addProduct,
-    removeProduct,
+   // removeProduct,
     getProducts,
-    updateProduct
+   // updateProduct
 };
 
 
